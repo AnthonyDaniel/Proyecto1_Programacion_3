@@ -38,6 +38,7 @@ public class ConexionUsuario extends Conexion {
                     interfazPrincipal.modo.setText("Alministrador");
                     interfazPrincipal.ingresar.setVisible(false);
                     interfazPrincipal.registrar.setVisible(false);
+                    interfazPrincipal.agregar.setEnabled(true);
                     uAgregarMDI.setVisible(true);
                     mostrar();
                     return true;

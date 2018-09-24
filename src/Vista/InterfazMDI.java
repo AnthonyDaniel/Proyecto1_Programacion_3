@@ -5,7 +5,7 @@ import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.ImageIcon;
-
+ 
 public class InterfazMDI extends javax.swing.JFrame {
 
     public int color; // Esta variable para darle color a las publicaciones y usuarios
@@ -13,7 +13,8 @@ public class InterfazMDI extends javax.swing.JFrame {
     public InterfazMDI() {
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.png")).getImage());
         setLayout(null);
-        initComponents();  
+        initComponents();
+        agregar.setEnabled(false);
         esquinasCurvasFrame();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -21,7 +22,7 @@ public class InterfazMDI extends javax.swing.JFrame {
     }
 
     public void esquinasCurvasFrame(){ //Curvar las esquinas del Frame principal
-        Shape forma = new RoundRectangle2D.Double(0,0,this.getBounds().width,this.getBounds().height,15,15);
+        Shape forma = new RoundRectangle2D.Double(0,0,this.getBounds().width,this.getBounds().height,27,27);
         AWTUtilities.setWindowShape(this, forma);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -43,6 +44,7 @@ public class InterfazMDI extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         contenedorProductos = new javax.swing.JPanel();
+        agregar = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         contenedorUsuarios = new javax.swing.JPanel();
@@ -62,6 +64,7 @@ public class InterfazMDI extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/X2.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
         jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,10 +94,12 @@ public class InterfazMDI extends javax.swing.JFrame {
         ingresar.setBackground(new java.awt.Color(51, 51, 51));
         ingresar.setForeground(new java.awt.Color(204, 204, 204));
         ingresar.setText("Ingresar");
+        ingresar.setBorderPainted(false);
 
         registrar.setBackground(new java.awt.Color(51, 51, 51));
         registrar.setForeground(new java.awt.Color(204, 204, 204));
         registrar.setText("Registrar");
+        registrar.setBorderPainted(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -189,15 +194,25 @@ public class InterfazMDI extends javax.swing.JFrame {
         contenedorProductos.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(contenedorProductos);
 
+        agregar.setBackground(new java.awt.Color(51, 51, 51));
+        agregar.setForeground(new java.awt.Color(204, 204, 204));
+        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
+        agregar.setText("Agregar Publicación");
+        agregar.setBorderPainted(false);
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
+            .addComponent(agregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(agregar))
         );
 
         pestañas.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Imagenes/computadora.png")), jPanel14, "Productos"); // NOI18N
@@ -229,7 +244,7 @@ public class InterfazMDI extends javax.swing.JFrame {
             .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel15Layout.createSequentialGroup()
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 92, Short.MAX_VALUE)))
+                    .addGap(0, 87, Short.MAX_VALUE)))
         );
 
         pestañas.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png")), jPanel15, "Usuarios"); // NOI18N
@@ -245,7 +260,7 @@ public class InterfazMDI extends javax.swing.JFrame {
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addGap(0, 377, Short.MAX_VALUE)
         );
 
         pestañas.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Imagenes/acerca.png")), jPanel16, "Acerca de..."); // NOI18N
@@ -298,6 +313,7 @@ public class InterfazMDI extends javax.swing.JFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton agregar;
     public javax.swing.JPanel agregarAdmin;
     private javax.swing.JPanel compras;
     public javax.swing.JPanel contenedorProductos;

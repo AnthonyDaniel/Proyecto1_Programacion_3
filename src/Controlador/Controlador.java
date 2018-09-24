@@ -2,6 +2,7 @@
 package Controlador;
 
 import Modelo.Conexion;
+import Modelo.ConexionPublicacionComputadoras;
 import Modelo.ConexionUsuario;
 import Vista.Ingresar;
 import Vista.InterfazMDI;
@@ -24,7 +25,13 @@ public class Controlador {
     public Controlador(){
         inicializar();
         //Pruebas temporales 
-        Productos e = new Productos(interfazPrincipal);
+        
+        ConexionPublicacionComputadoras e = new ConexionPublicacionComputadoras(interfazPrincipal);
+        for(int i = 0 ; i<12; i++ ){
+         Productos eo = new Productos(e);
+         interfazPrincipal.contenedorProductos.add(eo);
+       
+        }
         interfazPrincipal.repaint();
     }
     
