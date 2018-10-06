@@ -4,7 +4,7 @@ package Vista;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+
 
 public class visualizar extends javax.swing.JFrame {
 //    private Publicacion publicacion;

@@ -190,6 +190,8 @@ public class InterfazMDI extends javax.swing.JFrame {
         jPanel14.setBackground(new java.awt.Color(51, 51, 51));
         jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         contenedorProductos.setBackground(new java.awt.Color(255, 255, 255));
         contenedorProductos.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane1.setViewportView(contenedorProductos);

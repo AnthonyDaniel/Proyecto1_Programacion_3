@@ -19,20 +19,15 @@ public class Controlador {
     private Registrar registrar;
     private Ingresar ingresar;
     private ConexionUsuario cUsuario;
+    private ConexionPublicacionComputadoras cpComputadoras;
     private ControladorIngresar cIngresar;
     private ControladorRegistrar cRegistrar;
+    private ControladorPublicaciones cPublicaciones;
    
     public Controlador(){
         inicializar();
-        //Pruebas temporales 
         
-        ConexionPublicacionComputadoras e = new ConexionPublicacionComputadoras(interfazPrincipal);
-        for(int i = 0 ; i<12; i++ ){
-         Productos eo = new Productos(e);
-         interfazPrincipal.contenedorProductos.add(eo);
-       
-        }
-        interfazPrincipal.repaint();
+   
     }
     
     //Iniciar variables, y llamar funciones
@@ -41,9 +36,11 @@ public class Controlador {
         registrar = new Registrar(interfazPrincipal);
         ingresar = new Ingresar(interfazPrincipal);
         conexion = new Conexion(interfazPrincipal); // recibe la interfaz, para cambiar de color el indicador de conexio
+        cpComputadoras = new ConexionPublicacionComputadoras(interfazPrincipal); // Recibe como parameto la interfaz mdi, para poder interactuar con los diferentes botones
         cUsuario = new ConexionUsuario(interfazPrincipal); //Recibe la interfaz para poder aplicar herencia a la clase conexion
         cIngresar = new ControladorIngresar(interfazPrincipal,ingresar,cUsuario); //Llamamos el controlador ingresar (Verifica el login) Controlador
         cRegistrar = new ControladorRegistrar(ingresar, registrar, cUsuario); //Llamamos el controlador ingresar (Verificar el registro) Controlador
+        cPublicaciones = new ControladorPublicaciones(cpComputadoras); // Le mandamos el conexionComputaras, para poder acceder a los distintos metodos
         establecerConexion();
         registrarMDI();
         ingresarMDI();

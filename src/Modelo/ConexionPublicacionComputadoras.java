@@ -22,12 +22,14 @@ public class ConexionPublicacionComputadoras extends Conexion{
     public ConexionPublicacionComputadoras(InterfazMDI e) {
         super(e);
         interfazPrincipal = e;
+        mostrarP();
+        interfazPrincipal.repaint();
     }
     
       public boolean agregar(String codigo,String titu,String des,String precio,FileInputStream archivo){
            try{
                on = (Connection)this.conexion();
-               PreparedStatement pps = on.prepareStatement("INSERT INTO proyecto.producto(codigo,titulo,descripcion,precio,imagen) VALUES(?,?,?,?,?)");
+               PreparedStatement pps = on.prepareStatement("INSERT INTO proyecto1.producto(codigo,titulo,descripcion,precio,imagen) VALUES(?,?,?,?,?)");
                pps.setString(1, codigo);
                pps.setString(2, titu);
                pps.setString(3, des);
@@ -36,6 +38,7 @@ public class ConexionPublicacionComputadoras extends Conexion{
                pps.executeUpdate();
                interfazPrincipal.contenedorProductos.removeAll();
                mostrarP();
+               interfazPrincipal.repaint();
                return true;
          }catch(Exception e){
              JOptionPane.showMessageDialog(null, "Error, Imagen demasiado grande");
@@ -45,11 +48,11 @@ public class ConexionPublicacionComputadoras extends Conexion{
     public void mostrarP(){
            try {
              on = (java.sql.Connection) this.conexion();
-             consulta = on.prepareStatement("SELECT * FROM proyecto.computadoras");
+             consulta = on.prepareStatement("SELECT * FROM proyecto1.producto");
              datos = consulta.executeQuery();
              
              while(datos.next()){
-                 
+                  
                  Productos tp = new Productos(this);
                  tp.setVisible(true);
 
@@ -58,7 +61,7 @@ public class ConexionPublicacionComputadoras extends Conexion{
                  tp.descripcion.setText(datos.getString("descripcion"));
                  tp.precio.setText(datos.getString("precio"));
               
-                 Blob blob = datos.getBlob(4);
+                 Blob blob = datos.getBlob(5);
                  
                  byte[] data = blob.getBytes(1,(int)blob.length());
                 
@@ -67,7 +70,7 @@ public class ConexionPublicacionComputadoras extends Conexion{
                  try{
                     img = ImageIO.read(new ByteArrayInputStream(data));
                  }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, "Error al leer imagen");
+                    JOptionPane.showMessageDialog(null, "Error al leer imagen"); 
                  }
                  
                  ImageIcon icon = new ImageIcon(img);
