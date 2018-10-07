@@ -40,7 +40,7 @@ public class Controlador {
         cUsuario = new ConexionUsuario(interfazPrincipal); //Recibe la interfaz para poder aplicar herencia a la clase conexion
         cIngresar = new ControladorIngresar(interfazPrincipal,ingresar,cUsuario); //Llamamos el controlador ingresar (Verifica el login) Controlador
         cRegistrar = new ControladorRegistrar(ingresar, registrar, cUsuario); //Llamamos el controlador ingresar (Verificar el registro) Controlador
-        cPublicaciones = new ControladorPublicaciones(cpComputadoras); // Le mandamos el conexionComputaras, para poder acceder a los distintos metodos
+        cPublicaciones = new ControladorPublicaciones(cpComputadoras,interfazPrincipal); // Le mandamos el conexionComputaras, para poder acceder a los distintos metodos
         establecerConexion();
         registrarMDI();
         ingresarMDI();

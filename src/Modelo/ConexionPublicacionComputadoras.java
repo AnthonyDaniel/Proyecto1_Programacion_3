@@ -53,7 +53,7 @@ public class ConexionPublicacionComputadoras extends Conexion{
              
              while(datos.next()){
                   
-                 Productos tp = new Productos(this);
+                 Productos tp = new Productos(this,interfazPrincipal);
                  tp.setVisible(true);
 
                  tp.titulo.setText(datos.getString("titulo"));
@@ -87,6 +87,16 @@ public class ConexionPublicacionComputadoras extends Conexion{
 
              JOptionPane.showMessageDialog(null, "Existe un error: " + e);
          }
-
+    }
+    public boolean eliminar(Productos e){
+          try {
+                on = (java.sql.Connection) this.conexion();
+                PreparedStatement pps = on.prepareStatement("DELETE FROM proyecto1.producto WHERE codigo=?");
+                pps.setString(1, e.codigo.getText());
+                return pps.executeUpdate() == 1;
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error Eliminar: " + e, "Error", JOptionPane.ERROR_MESSAGE,null);
+        }
+         return false;
     }
 }

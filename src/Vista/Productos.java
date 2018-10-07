@@ -12,9 +12,10 @@ public class Productos extends javax.swing.JPanel {
     
     private InterfazMDI interfazPrincipal; //Llamamos a la interfaz principal por medio de inyeccion de codigo
     
-    public Productos(ConexionPublicacionComputadoras cp) {
+    public Productos(ConexionPublicacionComputadoras cp, InterfazMDI i) {
         initComponents();
         fondo(cp.impar);
+        interfazPrincipal = i;
     }
 
     private void fondo(int impar){
@@ -41,8 +42,8 @@ public class Productos extends javax.swing.JPanel {
 
         titulo = new javax.swing.JLabel();
         imagen = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        comprar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         descripcion = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
@@ -59,18 +60,18 @@ public class Productos extends javax.swing.JPanel {
         imagen.setBackground(new java.awt.Color(0, 153, 204));
         imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono.png"))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carrito.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setOpaque(false);
+        comprar.setBackground(new java.awt.Color(255, 255, 255));
+        comprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carrito.png"))); // NOI18N
+        comprar.setBorderPainted(false);
+        comprar.setOpaque(false);
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        jButton2.setOpaque(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        eliminar.setBackground(new java.awt.Color(255, 255, 255));
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
+        eliminar.setBorderPainted(false);
+        eliminar.setOpaque(false);
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                eliminarActionPerformed(evt);
             }
         });
 
@@ -124,9 +125,9 @@ public class Productos extends javax.swing.JPanel {
                                 .addGap(10, 10, 10)
                                 .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(55, 55, 55)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -147,8 +148,8 @@ public class Productos extends javax.swing.JPanel {
                                 .addComponent(jLabel2)
                                 .addComponent(precio))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                .addComponent(eliminar, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(comprar, javax.swing.GroupLayout.Alignment.TRAILING))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -158,23 +159,25 @@ public class Productos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+      
         if(interfazPrincipal.modo.getText().equals("Alministrador")){
-        
-            JOptionPane.showMessageDialog(null, "S");
-        
+              JOptionPane.showMessageDialog(null, "Todo Bien");
         }else{
-            JOptionPane.showMessageDialog(null, "Debes ser alministrador");
+             JOptionPane.showMessageDialog(null, "Debes ser alministrador");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+          
+            
+      
+    }//GEN-LAST:event_eliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel codigo;
+    private javax.swing.JButton comprar;
     public javax.swing.JTextArea descripcion;
+    public javax.swing.JButton eliminar;
     public javax.swing.JLabel imagen;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
