@@ -1,5 +1,5 @@
 
-package Vista;
+package Vista.MDI;
 
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
@@ -9,7 +9,8 @@ import javax.swing.ImageIcon;
 public class InterfazMDI extends javax.swing.JFrame {
 
     public int color; // Esta variable para darle color a las publicaciones y usuarios
-    
+    public int cantidad_;
+    public double total_;
     public InterfazMDI() {
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.png")).getImage());
         setLayout(null);
@@ -19,6 +20,8 @@ public class InterfazMDI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         color = 2;
+        cantidad_ = 0;
+        total_ = 0;
     }
 
     public void esquinasCurvasFrame(){ //Curvar las esquinas del Frame principal
@@ -33,6 +36,8 @@ public class InterfazMDI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         compras = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        cantidad = new javax.swing.JLabel();
+        total = new javax.swing.JLabel();
         ingresar = new javax.swing.JButton();
         registrar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -77,6 +82,12 @@ public class InterfazMDI extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carrito.png"))); // NOI18N
 
+        cantidad.setForeground(new java.awt.Color(204, 204, 204));
+        cantidad.setText("c/u ");
+
+        total.setForeground(new java.awt.Color(204, 204, 204));
+        total.setText("0.00000000");
+
         javax.swing.GroupLayout comprasLayout = new javax.swing.GroupLayout(compras);
         compras.setLayout(comprasLayout);
         comprasLayout.setHorizontalGroup(
@@ -84,11 +95,17 @@ public class InterfazMDI extends javax.swing.JFrame {
             .addGroup(comprasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cantidad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         comprasLayout.setVerticalGroup(
             comprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, comprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(cantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(total))
         );
 
         ingresar.setBackground(new java.awt.Color(51, 51, 51));
@@ -112,7 +129,7 @@ public class InterfazMDI extends javax.swing.JFrame {
                 .addComponent(ingresar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(compras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -317,7 +334,8 @@ public class InterfazMDI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton agregar;
     public javax.swing.JPanel agregarAdmin;
-    private javax.swing.JPanel compras;
+    public javax.swing.JLabel cantidad;
+    public javax.swing.JPanel compras;
     public javax.swing.JPanel contenedorProductos;
     public javax.swing.JPanel contenedorUsuarios;
     public javax.swing.JPanel indicador;
@@ -337,5 +355,6 @@ public class InterfazMDI extends javax.swing.JFrame {
     public javax.swing.JPanel panelPrincipal;
     public javax.swing.JTabbedPane pestañas;
     public javax.swing.JButton registrar;
+    public javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }

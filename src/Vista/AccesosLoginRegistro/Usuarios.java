@@ -1,7 +1,7 @@
 
-package Vista;
+package Vista.AccesosLoginRegistro;
 
-import Modelo.ConexionUsuario;
+import Modelo.Conexiones.ConexionUsuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -128,8 +128,7 @@ public class Usuarios extends javax.swing.JPanel {
              cUsuario.interfazPrincipal.contenedorUsuarios.removeAll();
              cUsuario.interfazPrincipal.repaint();
              cUsuario.mostrar();
-         }
-                          
+         }                   
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed

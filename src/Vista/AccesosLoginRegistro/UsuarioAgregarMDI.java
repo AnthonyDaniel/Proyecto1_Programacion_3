@@ -1,7 +1,7 @@
 
-package Vista;
+package Vista.AccesosLoginRegistro;
 
-import Modelo.ConexionUsuario;
+import Modelo.Conexiones.ConexionUsuario;
 import com.sun.glass.events.KeyEvent;
 
 public class UsuarioAgregarMDI extends javax.swing.JPanel {

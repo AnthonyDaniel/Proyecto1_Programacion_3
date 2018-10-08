@@ -1,5 +1,7 @@
 
-package Vista;
+package Vista.AccesosLoginRegistro;
+
+import Vista.MDI.InterfazMDI;
 
 public class Ingresar extends javax.swing.JPanel {
 

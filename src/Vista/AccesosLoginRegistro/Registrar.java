@@ -1,6 +1,7 @@
 
-package Vista;
+package Vista.AccesosLoginRegistro;
 
+import Vista.MDI.InterfazMDI;
 import java.awt.event.KeyEvent;
 
 public class Registrar extends javax.swing.JPanel {

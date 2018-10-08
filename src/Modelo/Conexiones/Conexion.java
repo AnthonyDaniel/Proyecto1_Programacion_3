@@ -1,7 +1,7 @@
 
-package Modelo;
+package Modelo.Conexiones;
 
-import Vista.InterfazMDI;
+import Vista.MDI.InterfazMDI;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;

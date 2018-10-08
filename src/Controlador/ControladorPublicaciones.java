@@ -1,15 +1,16 @@
 
 package Controlador;
 
-import Modelo.ConexionPublicacionComputadoras;
-import Vista.InterfazMDI;
-import Vista.SubirPublicacion;
+import Modelo.Conexiones.ConexionPublicacionComputadoras;
+import Vista.Carrito.ComprarContenedor;
+import Vista.MDI.InterfazMDI;
+import Vista.Publicaciones.SubirPublicacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ControladorPublicaciones {
@@ -17,21 +18,23 @@ public class ControladorPublicaciones {
     private SubirPublicacion sPublicacion; // Para poder darle un evento al boton subir imagen del main
     private ConexionPublicacionComputadoras cpConexion;
     private InterfazMDI interfazPrincipal;
+    private ComprarContenedor cc; //Para poder controlar los distintos aspectos del compras    
+    public ControladorPublicaciones(ConexionPublicacionComputadoras e,InterfazMDI i,ComprarContenedor _cc){
     
-    public ControladorPublicaciones(ConexionPublicacionComputadoras e,InterfazMDI i){
-    
-        inicializar(e,i);
+        inicializar(e,i,_cc);
     
     }
     
-    private void inicializar(ConexionPublicacionComputadoras e, InterfazMDI i){
+    private void inicializar(ConexionPublicacionComputadoras e, InterfazMDI i,ComprarContenedor _cc){
     
         cpConexion = e;
         sPublicacion = new SubirPublicacion();
         interfazPrincipal = i;
+        cc = _cc;
         botonSubir();
         subirPublicacion();
         atras();
+        clickCompras();
     
     }
     private void botonSubir(){
@@ -101,8 +104,17 @@ public class ControladorPublicaciones {
                 sPublicacion.dispose();
             }
         });
-    
-    
     }
+    //Este metodo me hace posible entrar al aparatado de compras 
+    private void clickCompras(){
+        
+       interfazPrincipal.compras.addMouseListener(new MouseAdapter() {
+           public void mouseClicked(MouseEvent me) {
+           
+               cc.setVisible(true);
+           
+           }
+       });
+    }  
     
 }

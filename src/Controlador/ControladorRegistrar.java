@@ -1,9 +1,9 @@
 
 package Controlador;
 
-import Modelo.ConexionUsuario;
-import Vista.Ingresar;
-import Vista.Registrar;
+import Modelo.Conexiones.ConexionUsuario;
+import Vista.AccesosLoginRegistro.Ingresar;
+import Vista.AccesosLoginRegistro.Registrar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;

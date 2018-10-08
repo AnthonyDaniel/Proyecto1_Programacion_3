@@ -1,10 +1,10 @@
-package Modelo;
+package Modelo.Conexiones;
 
 
-import Vista.InterfazMDI;
-import Vista.Registrar;
-import Vista.UsuarioAgregarMDI;
-import Vista.Usuarios;
+import Vista.MDI.InterfazMDI;
+import Vista.AccesosLoginRegistro.Registrar;
+import Vista.AccesosLoginRegistro.UsuarioAgregarMDI;
+import Vista.AccesosLoginRegistro.Usuarios;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,8 +1,13 @@
 
-package Vista;
+package Vista.Publicaciones;
 
-import Modelo.ConexionPublicacionComputadoras;
+import Vista.MDI.InterfazMDI;
+import Modelo.Conexiones.ConexionPublicacionComputadoras;
+import Vista.Carrito.Carrito;
+import Vista.Carrito.ComprarContenedor;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -10,12 +15,18 @@ import javax.swing.JOptionPane;
 
 public class Productos extends javax.swing.JPanel {
     
-    private InterfazMDI interfazPrincipal; //Llamamos a la interfaz principal por medio de inyeccion de codigo
-    
-    public Productos(ConexionPublicacionComputadoras cp, InterfazMDI i) {
+    public InterfazMDI interfazPrincipal; //Llamamos a la interfaz principal por medio de inyeccion de codigo
+    private ConexionPublicacionComputadoras cp;
+    private Carrito carrito;
+    public ComprarContenedor comprarC;
+   
+    public Productos(ConexionPublicacionComputadoras _cp, InterfazMDI i, ComprarContenedor comprarContenedor) {
         initComponents();
-        fondo(cp.impar);
+        fondo(_cp.impar);
         interfazPrincipal = i;
+        comprarC = comprarContenedor;
+        cp = _cp;
+       
     }
 
     private void fondo(int impar){
@@ -52,6 +63,11 @@ public class Productos extends javax.swing.JPanel {
         precio = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         titulo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         titulo.setForeground(new java.awt.Color(255, 255, 255));
@@ -64,6 +80,11 @@ public class Productos extends javax.swing.JPanel {
         comprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carrito.png"))); // NOI18N
         comprar.setBorderPainted(false);
         comprar.setOpaque(false);
+        comprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprarActionPerformed(evt);
+            }
+        });
 
         eliminar.setBackground(new java.awt.Color(255, 255, 255));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
@@ -162,7 +183,13 @@ public class Productos extends javax.swing.JPanel {
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
       
         if(interfazPrincipal.modo.getText().equals("Alministrador")){
-              JOptionPane.showMessageDialog(null, "Todo Bien");
+            if(cp.eliminar(this)){
+              interfazPrincipal.contenedorProductos.removeAll();
+              cp.mostrarP(); 
+              interfazPrincipal.repaint();
+            }else{
+              JOptionPane.showMessageDialog(null, "No se puede borrar la publicacion");
+            }
         }else{
              JOptionPane.showMessageDialog(null, "Debes ser alministrador");
         }
@@ -170,6 +197,78 @@ public class Productos extends javax.swing.JPanel {
             
       
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void comprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarActionPerformed
+       interfazPrincipal.cantidad.setText("");
+       interfazPrincipal.total.setText("");
+         
+        if(!interfazPrincipal.modo.getText().equals("Modo")){
+           try{
+               carrito = new Carrito(this);
+               carrito.title.setText(titulo.getText());
+               carrito.cod.setText(codigo.getText());
+               carrito.des.setText(descripcion.getText());
+               carrito.precio.setText(precio.getText());
+               carrito.img.setText("");
+               ImageIcon img = (ImageIcon) imagen.getIcon();
+               Icon imge = new ImageIcon(img.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT ));
+               carrito.img.setIcon(imge);
+               comprarC.contenedorC.add(carrito);
+               comprarC.repaint();
+               
+               interfazPrincipal.cantidad_++;
+               interfazPrincipal.total_ = interfazPrincipal.total_ + Double.parseDouble(precio.getText());
+               interfazPrincipal.cantidad.setText(interfazPrincipal.cantidad_+"₡");
+               interfazPrincipal.total.setText(interfazPrincipal.total_ + "");
+               interfazPrincipal.repaint();
+               comprarC.total.setText(interfazPrincipal.total.getText());
+               comprarC.cantidad.setText(interfazPrincipal.cantidad_+"");
+               interfazPrincipal.repaint();
+           }catch(Exception e){
+               JOptionPane.showMessageDialog(null, "Error" + e);
+           } 
+        }else{
+             JOptionPane.showMessageDialog(null, "Debes estar logiado, para poder comprar");
+        }
+    }//GEN-LAST:event_comprarActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        if(evt.getClickCount()==2){
+        
+             interfazPrincipal.cantidad.setText("");
+       interfazPrincipal.total.setText("");
+         
+        if(!interfazPrincipal.modo.getText().equals("Modo")){
+           try{
+               carrito = new Carrito(this);
+               carrito.title.setText(titulo.getText());
+               carrito.cod.setText(codigo.getText());
+               carrito.des.setText(descripcion.getText());
+               carrito.precio.setText(precio.getText());
+               carrito.img.setText("");
+               ImageIcon img = (ImageIcon) imagen.getIcon();
+               Icon imge = new ImageIcon(img.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT ));
+               carrito.img.setIcon(imge);
+               comprarC.contenedorC.add(carrito);
+               comprarC.repaint();
+               
+               interfazPrincipal.cantidad_++;
+               interfazPrincipal.total_ = interfazPrincipal.total_ + Double.parseDouble(precio.getText());
+               interfazPrincipal.cantidad.setText(interfazPrincipal.cantidad_+"₡");
+               interfazPrincipal.total.setText(interfazPrincipal.total_ + "");
+               interfazPrincipal.repaint();
+               comprarC.total.setText(interfazPrincipal.total.getText());
+               comprarC.cantidad.setText(interfazPrincipal.cantidad_+"");
+               interfazPrincipal.repaint();
+           }catch(Exception e){
+               JOptionPane.showMessageDialog(null, "Error" + e);
+           } 
+        }else{
+             JOptionPane.showMessageDialog(null, "Debes estar logiado, para poder comprar");
+        }
+                
+        }
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

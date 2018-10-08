@@ -1,5 +1,5 @@
 
-package Vista;
+package Vista.Publicaciones;
 
 import java.io.File;
 import javax.swing.ImageIcon;

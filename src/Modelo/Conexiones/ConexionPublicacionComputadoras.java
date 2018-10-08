@@ -1,7 +1,8 @@
-package Modelo;
+package Modelo.Conexiones;
 
-import Vista.InterfazMDI;
-import Vista.Productos;
+import Vista.Carrito.ComprarContenedor;
+import Vista.MDI.InterfazMDI;
+import Vista.Publicaciones.Productos;
 import com.mysql.jdbc.Connection;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -17,11 +18,13 @@ import javax.swing.JOptionPane;
 public class ConexionPublicacionComputadoras extends Conexion{
     
     public InterfazMDI interfazPrincipal ;
+    public ComprarContenedor cc;
     public int impar = 2;
     
-    public ConexionPublicacionComputadoras(InterfazMDI e) {
+    public ConexionPublicacionComputadoras(InterfazMDI e, ComprarContenedor _cc) {
         super(e);
         interfazPrincipal = e;
+        cc = _cc;
         mostrarP();
         interfazPrincipal.repaint();
     }
@@ -53,7 +56,7 @@ public class ConexionPublicacionComputadoras extends Conexion{
              
              while(datos.next()){
                   
-                 Productos tp = new Productos(this,interfazPrincipal);
+                 Productos tp = new Productos(this,interfazPrincipal, cc);
                  tp.setVisible(true);
 
                  tp.titulo.setText(datos.getString("titulo"));
@@ -82,7 +85,6 @@ public class ConexionPublicacionComputadoras extends Conexion{
                
                impar++;
              }    
-     
          } catch (Exception e) {
 
              JOptionPane.showMessageDialog(null, "Existe un error: " + e);
@@ -94,6 +96,7 @@ public class ConexionPublicacionComputadoras extends Conexion{
                 PreparedStatement pps = on.prepareStatement("DELETE FROM proyecto1.producto WHERE codigo=?");
                 pps.setString(1, e.codigo.getText());
                 return pps.executeUpdate() == 1;
+                
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error Eliminar: " + e, "Error", JOptionPane.ERROR_MESSAGE,null);
         }

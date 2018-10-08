@@ -1,5 +1,5 @@
 
-package Vista;
+package Vista.Publicaciones;
 
 import com.sun.awt.AWTUtilities;
 import java.awt.Image;
